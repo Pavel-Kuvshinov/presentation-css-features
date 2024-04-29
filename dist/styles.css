@@ -1,0 +1,38 @@
+.main__heading {
+  font-size: 1.3em;
+}
+
+.slide__heading {
+  font-size: 1.15em;
+}
+
+.slide__text {
+  font-size: 1em;
+}
+
+.slide__text-smallest {
+  font-size: 0.5em;
+  max-height: 500px !important;
+  tab-size: 1 !important;
+}
+
+.example {
+  max-height: 500px !important;
+}
+
+.slide__text-small {
+  font-size: 0.6em;
+  max-height: 500px !important;
+  tab-size: 1 !important;
+}
+
+.two_column_code {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+img{
+  height: 420px;
+}

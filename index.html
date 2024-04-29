@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>CSS in 2024 - presentation</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/styles.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1 class="main__heading">CCS in 2024.<br> Amaizing features.</h1>
+				</section>
+				<section>
+					<ul>
+						<li class="fragment">:is(), has(), where() - pseudo-class selectors;</li>
+						<li class="fragment">min(), max(), clamp() - css function;</li>
+						<li class="fragment">CSS nesting;</li>
+						<li class="fragment">@container and @layer;</li>
+					</ul>
+				</section>
+				<section>
+					<h2 class="slide__heading">:is()</h2>
+					<p class="slide__text">The :is() CSS pseudo-class selector takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list.</p>
+				</section>
+				<section>
+					<div class="slide__cover_two_column">
+						<pre class="example">
+							<p class="slide__text">without using :is()</p>
+							<code class="slide__text">
+								header p:hover,
+								main p:hover,
+								footer p:hover {
+									color: red;
+									cursor: pointer;
+								}
+							</code>
+						</pre>
+						<pre class="example">
+							<p class="slide__text">with using :is()</p>
+							<code class="slide__text">
+								:is(header, main, footer) p:hover {
+									color: red;
+									cursor: pointer;
+								}
+							</code>
+						</pre>
+					</div>
+				</section>
+				<section>
+					<h2 class="slide__heading">:where()</h2>
+					<p class="slide__text">The difference between :where() and :is() is that :where() always has zero specificity, whereas :is() takes on the specificity of the most specific selector in its arguments.</p>
+				</section>
+				<section class="two_column_code">
+					<pre class="example">
+						<code class="slide__text-smallest">
+							html {
+								font-family: sans-serif;
+								font-size: 150%;
+							}
+							:is(section.is-styling, aside.is-styling, footer.is-styling) a {
+								color: red;
+							}
+							:where(section.where-styling, aside.where-styling, footer.where-styling) a {
+								color: orange;
+							}
+							footer a {
+								color: blue;
+							}
+						</code>
+					</pre>
+					<img src="dist/pict1.jpg" alt="example_1">
+				</section>
+				<section>
+					<h2 class="slide__heading">:has()</h2>
+					<p class="slide__text">The :has() selector allows developers to apply styles to parent elements based on specific conditions met by their descendants.</p>
+				</section>
+				<section>
+					<p class="slide__text">For instance, styling a list item's border becomes effortless when its child input element is checked.</p>
+					<div class="two_column_code">
+						<pre class="example">
+							<code class="slide__text-small">
+								<ul>
+									<li>
+										<label> <input type="radio" name="source" />Google</label>
+									</li>
+									<li>
+										<label> <input type="radio" name="source" />Word of Mouth</label>
+									</li>
+									<li>
+										<label> <input type="radio" name="source" />Other</label>
+									</li>
+								</ul>
+							</code>
+						</pre>
+						<pre class="example">
+							<code class="slide__text-small">
+								ul li input:checked {
+									accent-color: #f806e4;
+								}
+	
+								ul li:has(input:checked) {
+									border: 2px solid #f806e4;
+								}
+							</code>
+						</pre>
+					</div>
+				</section>
+				<section class="two_column">
+					<img src="dist/pict2.jpg" alt="example_2">
+				</section>
+				<section>
+					<h2 class="slide__heading">min(), max(), clamp() - css functions.</h2>
+					<p class="slide__text">min() and max() css functions lets to set the smallest (most negative) and the largest (most positive) value accordingly from a list of comma-separated expressions as the value of a CSS property value.</p>
+				</section>
+				<section>
+					<p class="slide__text">clamp() css function clamps a middle value within a range of values between a defined minimum bound and a maximum bound. The function takes three parameters: a minimum value, a preferred value, and a maximum allowed value.</p>
+				</section>
+				<section class="two_column_code">
+					<pre class="example">
+						<code class="slide__text-small">
+							width: min(40%, 400px);
+							width: min(150vw, 100px); 
+
+							font-size: max(4vw, 2em, 2rem);
+							font-size: max(min(0.5vw, 0.5em), 1rem);
+						</code>
+					</pre>
+					<pre class="example">
+						<code class="slide__text-small">
+							/* Static values */
+							width: clamp(200px, 40%, 400px);
+							width: clamp(10vw, 20em, 100vw);
+
+							/* Calculated values */
+							width: clamp(min(10vw, 20rem), 300px, max(90vw, 55rem));
+							width: clamp(100px, calc(30% / 2rem + 10px), 900px);
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2 class="slide__heading">CSS Nesting</h2>
+					<p class="slide__text">CSS nesting lets you put CSS rules inside each other, kind of like how you can put boxes inside bigger boxes. This helps make your CSS code neater, easier to read, and you don't have to write the same thing over and over again.</p>
+				</section>
+				<section>
+					<h3 class="slide__subheading">Key Benefits</h3>
+					<ul>
+						<li class="fragment">Eliminates repetition;</li>
+						<li class="fragment">Better structure;</li>
+						<li class="fragment">Improved readability;</li>
+						<li class="fragment">Less prone to errors;</li>
+						<li class="fragment">Better maintainability;</li>
+					</ul>
+				</section>
+				<section class="two_column">
+					<p class="slide__text">Usage Example</p>
+					<pre class="example">
+						<code class="slide__text-smallest">
+							.card {
+								padding: 20px;
+							  
+								&:hover {
+								  box-shadow: 0 0 10px rgba(0,0,0,.1); 
+								}
+								
+								.title {
+								  font-size: 1.3rem;
+								}
+							}
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2 class="slide__heading">@layer directive</h2>
+					<p class="slide__text">The @layer directive allows you to organize your CSS into logical layers. This organization helps control the order in which styles are applied.</p>
+				</section>
+				<section>
+					<pre class="example">
+						<code class="slide__text-small">
+							/* Specify the order to apply styles in cascade */
+							@layer legacyCard, newCard;
+
+							/* Imagine you have a lot of styles */
+							@layer newCard {
+								.card {
+									background-color: red;
+								}
+							}
+							@layer legacyCard {
+								.card {
+									background-color: green;
+								}
+							}
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2 class="slide__heading">@container directive</h2>
+					<p class="slide__text">Container Queries allow components to adapt their layout based on the available space of their parent container.</p>
+				</section>
+				<section>
+					<pre class="example">
+						<code class="slide__text-small">
+							.card {
+								/*Add as a container type and name*/
+								container-type: inline-size;
+								container-name: card;
+								width: 500px;
+							}
+							  
+							/* Applies when the card's max width is 600px, not the whole screen */
+							@container card (max-width: 600px) {
+								.card-title {
+									color: blue;
+								}
+							}
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2 class="slide__heading">The end.</h2>
+					<p class="slide__text">I hope you enjoy that.</p>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
